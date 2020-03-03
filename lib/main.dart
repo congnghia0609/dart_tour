@@ -165,12 +165,26 @@ multi-line string.""";
   var iMeantToDoThis = 0 / 0;
   assert(iMeantToDoThis.isNaN);
 
+
   // Lists
   var list = [1, 2, 3];
   assert(list.length == 3);
   assert(list[1] == 2);
   list[1] = 1;
   assert(list[1] == 1);
+
+  // Iterator List
+  void printElement(int element) {
+    print(element);
+  }
+  // Pass printElement as a parameter.
+  list.forEach(printElement);
+  list.forEach((item) {
+    print('${list.indexOf(item)}: $item');
+  });
+  list.forEach((item) => print('${list.indexOf(item)}: $item'));
+
+  // constant List
   var constantList = const [1, 2, 3];
   // constantList[1] = 1; // Uncommenting this causes an error.
   var list2 = [0, ...list];
@@ -179,6 +193,7 @@ multi-line string.""";
   var list3;
   var list4 = [0, ...?list3];
   assert(list4.length == 1);
+
   // Dart 2.3 also introduced "collection if" and "collection for"
   var promoActive = false;
   var nav = ['Home', 'Furniture', 'Plants', if (promoActive) 'Outlet'];
@@ -188,6 +203,7 @@ multi-line string.""";
   var listOfStrings = ['#0', for (var i in listOfInts) '#$i'];
   assert(listOfStrings[1] == '#1');
   print(listOfStrings); // [#0, #1, #2, #3]
+
 
   // Sets
   var halogens = {'fluorine', 'chlorine', 'bromine', 'iodine', 'astatine'};
