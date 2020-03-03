@@ -4,7 +4,7 @@ dart_tour is a cheat sheet, quick reference to learn dart programming
 ## Getting Started
 
 ```dart
-// 1. A basic Dart program.
+  // 1. A basic Dart program.
   // This is a comment.
   /*
    * This is
