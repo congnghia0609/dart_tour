@@ -108,10 +108,10 @@ void main() {
 
   // Valid compile-time constants as of Dart 2.5.
   const Object i = 3; // Where i is a const Object with an int value...
-  const list = [i as int]; // Use a typecast.
+  const lst = [i as int]; // Use a typecast.
   const map = {if (i is int) i: "int"}; // Use is and collection if.
-  const set = {if (list is List<int>) ...list}; // ...and a spread.
-  print(list); // [3]
+  const set = {if (lst is List<int>) ...lst}; // ...and a spread.
+  print(lst); // [3]
   print(map); // {3: int}
   print(set); // {3}
 
@@ -150,5 +150,89 @@ multi-line string.""";
   //print(ms2);
   var raws = r'In a raw string, not even \n gets special treatment.';
   print(raws); //==> In a raw string, not even \n gets special treatment.
+
+  // Booleans
+  // Check for an empty string.
+  var fullName = '';
+  assert(fullName.isEmpty);
+  // Check for zero.
+  var hitPoints = 0;
+  assert(hitPoints <= 0);
+  // Check for null.
+  var unicorn;
+  assert(unicorn == null);
+  // Check for NaN.
+  var iMeantToDoThis = 0 / 0;
+  assert(iMeantToDoThis.isNaN);
+
+  // Lists
+  var list = [1, 2, 3];
+  assert(list.length == 3);
+  assert(list[1] == 2);
+  list[1] = 1;
+  assert(list[1] == 1);
+  var constantList = const [1, 2, 3];
+  // constantList[1] = 1; // Uncommenting this causes an error.
+  var list2 = [0, ...list];
+  assert(list2.length == 4);
+  // avoid exceptions by using a null list.
+  var list3;
+  var list4 = [0, ...?list3];
+  assert(list4.length == 1);
+  // Dart 2.3 also introduced "collection if" and "collection for"
+  var promoActive = false;
+  var nav = ['Home', 'Furniture', 'Plants', if (promoActive) 'Outlet'];
+  print(nav); // [Home, Furniture, Plants]
+  // collection for
+  var listOfInts = [1, 2, 3];
+  var listOfStrings = ['#0', for (var i in listOfInts) '#$i'];
+  assert(listOfStrings[1] == '#1');
+  print(listOfStrings); // [#0, #1, #2, #3]
+
+  // Sets
+  var halogens = {'fluorine', 'chlorine', 'bromine', 'iodine', 'astatine'};
+  var names = <String>{};
+  // Set<String> names = {}; // This works, too.
+  // var names = {}; // Creates a map, not a set.
+  var elements = <String>{};
+  elements.add('fluorine');
+  elements.addAll(halogens);
+  assert(elements.length == 5);
+
+  final constantSet = const {'fluorine', 'chlorine', 'bromine', 'iodine', 'astatine'};
+  // constantSet.add('helium'); // Uncommenting this causes an error.
+
+
+  // Maps
+  // Map<String, String>
+  var gifts = {
+    // Key:    Value
+    'first': 'partridge',
+    'second': 'turtledoves',
+    'fifth': 'golden rings'
+  };
+  // Map<int, String>
+  var nobleGases = {
+    2: 'helium',
+    10: 'neon',
+    18: 'argon',
+  };
+  var gifts2 = Map();
+  gifts2['first'] = 'partridge';
+  gifts2['second'] = 'turtledoves';
+  gifts2['fifth'] = 'golden rings';
+  var nobleGases2 = Map();
+  nobleGases2[2] = 'helium';
+  nobleGases2[10] = 'neon';
+  nobleGases2[18] = 'argon';
+  // constant Map
+  final constantMap = const {
+    2: 'helium',
+    10: 'neon',
+    18: 'argon',
+  };
+  // constantMap[2] = 'Helium'; // Uncommenting this causes an error.
+
+
 
 }
