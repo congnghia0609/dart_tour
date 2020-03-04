@@ -174,6 +174,9 @@ multi-line string.""";
   assert(list[1] == 1);
 
   // Iterator List
+  for (int i=0; i < list.length; i++) {
+    print('${i}: ${list[i]}');
+  }
   void printElement(int element) {
     print(element);
   }
@@ -248,6 +251,20 @@ multi-line string.""";
     18: 'argon',
   };
   // constantMap[2] = 'Helium'; // Uncommenting this causes an error.
+
+
+
+  // Functions
+  bool isNoble(int atomicNumber) {
+    return nobleGases[atomicNumber] != null;
+  }
+  // omit the types return
+  isNoble2(atomicNumber) {
+    return nobleGases[atomicNumber] != null;
+  }
+  // shorthand syntax (arrow syntax)
+  bool isNoble3(int atomicNumber) => nobleGases[atomicNumber] != null;
+
 
 
 
