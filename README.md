@@ -34,18 +34,22 @@ void main() {
    * - Although Dart is strongly typed, type annotations are optional because Dart can infer types.
    *   When you want to explicitly say that no type is expected, use the special type "dynamic".
    *
-   * - Dart supports generic types, like List<int> (a list of integers) or List<dynamic> (a list of objects of any type).
+   * - Dart supports generic types, like List<int> (a list of integers) or
+   *   List<dynamic> (a list of objects of any type).
    *
-   * - Dart supports top-level functions (such as main()), as well as functions tied to a class or object (static and instance methods, respectively).
+   * - Dart supports top-level functions (such as main()), as well as functions tied to a class or
+   *   object (static and instance methods, respectively).
    *   You can also create functions within functions (nested or local functions).
    *
-   * - Similarly, Dart supports top-level variables, as well as variables tied to a class or object (static and instance variables).
+   * - Similarly, Dart supports top-level variables, as well as variables tied to a class or
+   *   object (static and instance variables).
    *   Instance variables are sometimes known as fields or properties.
    *
    * - Unlike Java, Dart doesn’t have the keywords public, protected, and private.
    *   If an identifier starts with an underscore (_), it’s private to its library.
    *
-   * - Identifiers can start with a letter or underscore (_), followed by any combination of those characters plus digits.
+   * - Identifiers can start with a letter or underscore (_), followed by any combination of
+   *   those characters plus digits.
    *
    * - Dart has both expressions (which have runtime values) "condition ? expr1 : expr2"
    *   and statements (which don’t) if-else.
