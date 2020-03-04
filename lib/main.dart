@@ -94,7 +94,8 @@ void main() {
   int lineCount;
   print(lineCount); // null
 
-  // Final and const: A final variable can be set only once; a const variable is a compile-time constant.
+  // Final and const:
+  // A final variable can be set only once; a const variable is a compile-time constant.
   final fname = 'Bob'; // Without a type annotation
   final String nickname = 'Bobby';
   // Error: a final variable can only be set once.
