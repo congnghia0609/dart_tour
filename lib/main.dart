@@ -472,6 +472,61 @@ multi-line string.""";
     // Always clean up, even if an exception is thrown.
     //cleanLlamaStalls();
   }
+
+  // 7. Generics
+  /**
+   * Why use generics?
+   * - Properly specifying generic types results in better generated code.
+   * - You can use "generics" to reduce code duplication.
+   */
 }
 
 class OutOfLlamasException implements Exception {}
+
+// 7. Generics
+// 7.1. Reduce code duplication.
+abstract class ObjectCache {
+  Object getByKey(String key);
+
+  void setByKey(String key, Object value);
+}
+
+abstract class StringCache {
+  String getByKey(String key);
+
+  void setByKey(String key, String value);
+}
+
+//=> reduce code duplication.
+abstract class Cache<T> {
+  T getByKey(String key);
+
+  void setByKey(String key, T value);
+}
+
+// 7.2. Generic class
+// Restricting the parameterized type
+/**
+    class Foo<T extends SomeBaseClass> {
+    // Implementation goes here...
+    String toString() => "Instance of 'Foo<$T>'";
+    }
+
+    class Extender extends SomeBaseClass {}
+
+    var someBaseClassFoo = Foo<SomeBaseClass>();
+    var extenderFoo = Foo<Extender>();
+
+    var foo = Foo();
+    print(foo); // Instance of 'Foo<SomeBaseClass>'
+
+    var foo = Foo<Object>(); //==> Error
+ */
+
+// 7.3. Generic methods
+T first<T>(List<T> ts) {
+  // Do some initial work or error checking, then...
+  T tmp = ts[0];
+  // Do some additional checking or processing...
+  return tmp;
+}
