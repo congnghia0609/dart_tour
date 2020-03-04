@@ -462,6 +462,18 @@ multi-line string.""";
    * - Properly specifying generic types results in better generated code.
    * - You can use "generics" to reduce code duplication.
    */
+
+  // 8. Asynchrony support
+  /**
+   * Dart libraries are full of functions that return Future or Stream objects.
+   * These functions are asynchronous: they return after setting up
+   * a possibly time-consuming operation (such as I/O),
+   * without waiting for that operation to complete.
+   *
+   * The "async" and "await" keywords support asynchronous programming,
+   * letting you write asynchronous code that looks similar to synchronous code.
+   */
+  checkVersion();
 }
 
 class OutOfLlamasException implements Exception {}
@@ -512,6 +524,15 @@ T first<T>(List<T> ts) {
   T tmp = ts[0];
   // Do some additional checking or processing...
   return tmp;
+}
+
+// 8. Asynchrony support
+Future<String> lookUpVersion() async => '1.0.0';
+
+Future checkVersion() async {
+  var version = await lookUpVersion();
+  // Do something with version
+  print(version);
 }
 ```
 

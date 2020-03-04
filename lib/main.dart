@@ -491,7 +491,6 @@ multi-line string.""";
    * letting you write asynchronous code that looks similar to synchronous code.
    */
   checkVersion();
-
 }
 
 class OutOfLlamasException implements Exception {}
@@ -546,6 +545,7 @@ T first<T>(List<T> ts) {
 
 // 8. Asynchrony support
 Future<String> lookUpVersion() async => '1.0.0';
+
 Future checkVersion() async {
   var version = await lookUpVersion();
   // Do something with version
