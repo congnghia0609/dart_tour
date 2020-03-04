@@ -474,6 +474,12 @@ multi-line string.""";
    * letting you write asynchronous code that looks similar to synchronous code.
    */
   checkVersion();
+
+  // 9. Callable classes
+  var wf = new WannabeFunction();
+  var out = wf("Hi","there,","gang");
+  print('$out');
+  //==> Hi there, gang!
 }
 
 class OutOfLlamasException implements Exception {}
@@ -533,6 +539,11 @@ Future checkVersion() async {
   var version = await lookUpVersion();
   // Do something with version
   print(version);
+}
+
+// 9. Callable classes
+class WannabeFunction {
+  call(String a, String b, String c) => '$a $b $c!';
 }
 ```
 
