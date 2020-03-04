@@ -467,9 +467,6 @@ multi-line string.""";
     // Always clean up, even if an exception is thrown.
     //cleanLlamaStalls();
   }
-
-  // 7. Classes
-
 }
 
 class OutOfLlamasException implements Exception {}
