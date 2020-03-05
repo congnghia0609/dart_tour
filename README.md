@@ -712,6 +712,7 @@ String scream(int length) => "A${'a' * length}h!";
 ## A tour of the core libraries
 ```dart
 import 'dart:math';
+import 'dart:convert';
 
 // A tour of the core libraries
 // https://dart.dev/guides/libraries/library-tour
@@ -996,5 +997,48 @@ void main() {
   print(random.nextDouble()); // Between 0.0 and 1.0: [0, 1)
   print(random.nextInt(10)); // Between 0 and 9.
   print(random.nextBool()); // true or false
+
+  // 5. dart:convert - decoding and encoding JSON, UTF-8, and more
+  /// Decoding and encoding JSON
+  // NOTE: Be sure to use double quotes ("),
+  // not single quotes ('), inside the JSON string.
+  // This string is JSON, not Dart.
+  var jsonString = '''
+    [
+      {"score": 40},
+      {"score": 80}
+    ]
+  ''';
+  var scores = jsonDecode(jsonString);
+  assert(scores is List);
+  var firstScore = scores[0];
+  assert(firstScore is Map);
+  assert(firstScore['score'] == 40);
+
+  var scores2 = [
+    {'score': 40},
+    {'score': 80},
+    {'score': 100, 'overtime': true, 'special_guest': null}
+  ];
+  var jsonText = jsonEncode(scores2);
+  assert(jsonText == '[{"score":40},{"score":80},'
+          '{"score":100,"overtime":true,'
+          '"special_guest":null}]');
+
+  /// Decoding and encoding UTF-8 characters
+  List<int> utf8Bytes = [
+    0xc3, 0x8e, 0xc3, 0xb1, 0xc5, 0xa3, 0xc3, 0xa9,
+    0x72, 0xc3, 0xb1, 0xc3, 0xa5, 0xc5, 0xa3, 0xc3,
+    0xae, 0xc3, 0xb6, 0xc3, 0xb1, 0xc3, 0xa5, 0xc4,
+    0xbc, 0xc3, 0xae, 0xc5, 0xbe, 0xc3, 0xa5, 0xc5,
+    0xa3, 0xc3, 0xae, 0xe1, 0xbb, 0x9d, 0xc3, 0xb1
+  ];
+  var funnyWord = utf8.decode(utf8Bytes);
+  assert(funnyWord == 'Îñţérñåţîöñåļîžåţîờñ');
+  List<int> encodeUtf8 = utf8.encode('Îñţérñåţîöñåļîžåţîờñ');
+  assert(encodeUtf8.length == utf8Bytes.length);
+  for (int i = 0; i < encodeUtf8.length; i++) {
+    assert(encodeUtf8[i] == utf8Bytes[i]);
+  }
 }
 ```
