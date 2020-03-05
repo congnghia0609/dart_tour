@@ -2,7 +2,7 @@
 dart_tour is a cheat sheet, quick reference to learn dart programming
 
 ## Getting Started
-
+Reference code detail in file [main.rb](https://github.com/congnghia0609/dart_tour/blob/master/lib/main.dart)  
 ```dart
 import 'package:meta/meta.dart';
 
@@ -548,6 +548,7 @@ class WannabeFunction {
 ```
 
 ## Class
+Reference code detail in file [main_class.rb](https://github.com/congnghia0609/dart_tour/blob/master/lib/main_class.dart)  
 ```dart
 import 'dart:math';
 
@@ -710,6 +711,7 @@ String scream(int length) => "A${'a' * length}h!";
 ```
 
 ## A tour of the core libraries
+Reference code detail in file [main_core_lib.rb](https://github.com/congnghia0609/dart_tour/blob/master/lib/main_core_lib.dart)  
 ```dart
 import 'dart:math';
 import 'dart:convert';
