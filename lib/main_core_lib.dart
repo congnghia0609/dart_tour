@@ -218,4 +218,63 @@ void main() {
   for (var k in hawaiianBeaches.keys) {
     print('I want to visit $k and swim at ${hawaiianBeaches[k]}');
   }
+
+  // 2. URIs
+  // Encoding and decoding fully qualified URIs
+  var uri = 'https://example.org/api?foo=some message';
+  var encoded = Uri.encodeFull(uri);
+  assert(encoded == 'https://example.org/api?foo=some%20message');
+  var decoded = Uri.decodeFull(encoded);
+  assert(uri == decoded);
+  // Encoding and decoding URI components
+  var encodec = Uri.encodeComponent(uri);
+  assert(encodec == 'https%3A%2F%2Fexample.org%2Fapi%3Ffoo%3Dsome%20message');
+  var decodec = Uri.decodeComponent(encodec);
+  assert(uri == decodec);
+  // Parsing URIs
+  var uri2 = Uri.parse('https://example.org:8080/foo/bar#frag');
+  assert(uri2.scheme == 'https');
+  assert(uri2.host == 'example.org');
+  assert(uri2.port == 8080);
+  assert(uri2.path == '/foo/bar');
+  assert(uri2.fragment == 'frag');
+  assert(uri2.origin == 'https://example.org:8080');
+  // Building URIs
+  var uri3 = Uri(scheme: 'https', host: 'example.org', path: '/foo/bar', fragment: 'frag');
+  assert(uri3.toString() == 'https://example.org/foo/bar#frag');
+
+  // 3. Dates and times
+  // Get the current date and time.
+  var now = DateTime.now();
+  // Create a new DateTime with the local time zone.
+  var y2k = DateTime(2000); // January 1, 2000
+  // Specify the month and day.
+  y2k = DateTime(2000, 1, 2); // January 2, 2000
+  // Specify the date as a UTC time.
+  y2k = DateTime.utc(2000); // 1/1/2000, UTC
+  // Specify a date and time in ms since the Unix epoch.
+  y2k = DateTime.fromMillisecondsSinceEpoch(946684800000, isUtc: true);
+  // Parse an ISO 8601 date.
+  y2k = DateTime.parse('2000-01-01T00:00:00Z');
+
+  // 1/1/2000, UTC
+  y2k = DateTime.utc(2000);
+  assert(y2k.millisecondsSinceEpoch == 946684800000);
+  // 1/1/1970, UTC
+  var unixEpoch = DateTime.utc(1970);
+  assert(unixEpoch.millisecondsSinceEpoch == 0);
+
+  // Add one year.
+  var y2001 = y2k.add(Duration(days: 366));
+  assert(y2001.year == 2001);
+
+  // Subtract 30 days.
+  var december2000 = y2001.subtract(Duration(days: 30));
+  assert(december2000.year == 2000);
+  assert(december2000.month == 12);
+
+  // Calculate the difference between two dates.
+  // Returns a Duration object.
+  var duration = y2001.difference(y2k);
+  assert(duration.inDays == 366); // y2k was a leap year.
 }
