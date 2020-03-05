@@ -713,6 +713,7 @@ String scream(int length) => "A${'a' * length}h!";
 ```dart
 import 'dart:math';
 import 'dart:convert';
+import 'dart:io';
 
 // A tour of the core libraries
 // https://dart.dev/guides/libraries/library-tour
@@ -1040,5 +1041,31 @@ void main() {
   for (int i = 0; i < encodeUtf8.length; i++) {
     assert(encodeUtf8[i] == utf8Bytes[i]);
   }
+
+  // 6. dart:io - I/O for servers and command-line apps
+  /// Files and directories
+
+  // Reading a file as text
+  var config = File('config.txt');
+  var contents;
+  // Put the whole file in a single string.
+  contents = config.readAsStringSync();
+  print('The file is ${contents.length} characters long.');
+  // Put each line of the file into its own string.
+  contents = config.readAsLinesSync();
+  print('The file is ${contents.length} lines long.');
+  // Reading a file as binary
+  var contentBytes = config.readAsBytesSync();
+  print('The file is ${contentBytes.length} bytes long.');
+
+  // Writing file contents
+  var logFile = File('log.txt');
+  if (!logFile.existsSync()) {
+    logFile.createSync();
+  }
+  var sink = logFile.openSync(mode: FileMode.append);
+  sink.writeStringSync('FILE ACCESSED ${DateTime.now()}\n');
+  sink.flushSync();
+  sink.closeSync();
 }
 ```
